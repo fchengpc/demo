@@ -9,11 +9,11 @@ import ApolloClient from "apollo-client";
 import gql from "graphql-tag";
 import schema from "../prismicIntrospectionResults";
 import config from '../config'
+
 const endpoint ='https://onelasttime.prismic.io/graphql'
 
 const Homepage = ({ doc, menu, lang, preview }) => {
-    let data = doc.data.allHomepages;
-    console.log('--------------------------------');
+    let data = doc.data;
     return (
         <Fragment>
             {JSON.stringify(data)}
@@ -25,11 +25,10 @@ export async function getStaticProps () {
     const fragmentMatcher = new IntrospectionFragmentMatcher({
         introspectionQueryResultData: schema,
     });
-    console.log( config.name,'-config.name-')
 
     const apolloClient = new ApolloClient({
         link: PrismicLink({
-            uri: endpoint,
+            uri: config.gql,
         }),
         cache: new InMemoryCache({ fragmentMatcher }),
     });
@@ -37,26 +36,19 @@ export async function getStaticProps () {
         .query({
             query: gql`
                 query {
-                    allHomepages {
+                    allPages {
                         edges {
                             node {
-                                body {
-                                    ... on HomepageBodyText_info {
-                                        primary {
-                                            section_title
-                                            left_column_text
-                                            right_column_text
-                                        }
-                                    }
-                                }
+                                slug
                             }
                         }
                     }
                 }
             `,
         })
-        .then((response) => {
-            return response;
+        .then((r) => {
+            // console.log( r,'-query call response-')
+            return r;
         })
         .catch((error) => {
             console.error(error);
