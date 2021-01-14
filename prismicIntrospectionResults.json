@@ -1,1 +1,0 @@
-{"__schema":{"types":[{"kind":"INTERFACE","name":"_Document","possibleTypes":[{"name":"Page"}]},{"kind":"INTERFACE","name":"_Linkable","possibleTypes":[{"name":"Page"},{"name":"_ExternalLink"},{"name":"_FileLink"},{"name":"_ImageLink"}]}]}}
