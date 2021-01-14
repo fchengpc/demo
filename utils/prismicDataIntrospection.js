@@ -1,9 +1,8 @@
 const fetch = require("node-fetch");
 const fs = require("fs");
-const restUrl = "https://onelasttime.cdn.prismic.io/api/v2";
-const graphqlUrl = "https://onelasttime.prismic.io/graphql";
 const resultsFileName = "prismicIntrospectionResults";
 const config = require('../config')
+
 fetch(`${config.api}`)
     .then((response) => response.json())
     .then((data) => {

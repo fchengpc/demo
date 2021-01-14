@@ -10,9 +10,7 @@ import gql from "graphql-tag";
 import schema from "../prismicIntrospectionResults";
 import config from '../config'
 
-const endpoint ='https://onelasttime.prismic.io/graphql'
-
-const Homepage = ({ doc, menu, lang, preview }) => {
+const Page = ({ doc}) => {
     let data = doc.data;
     return (
         <Fragment>
@@ -62,4 +60,4 @@ export async function getStaticProps () {
     };
 }
 
-export default Homepage;
+export default Page;
